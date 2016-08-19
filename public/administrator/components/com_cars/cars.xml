@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="0.1" method="upgrade">
+    <name>com_cars</name>
+    <author>Eddie Crona</author>
+    <creationDate>August 2016</creationDate>
+    <copyright>Copyright (c) 2016 Eddie Crona</copyright>
+    <license>The MIT License (MIT); see LICENSE.txt</license>
+    <authorEmail>ecrona@gmail.com</authorEmail>
+    <version>0.0.1</version>
+    <description>An example component demonstrating Joomla interaction with React</description>
+    <files folder="site">
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <filename>cars.php</filename>
+        <folder>models</folder>
+        <folder>views</folder>
+    </files>
+    <languages folder="site">
+        <language tag="en-GB">language/en-GB.com_search.ini</language>
+    </languages>
+    <administration>
+    </administration>
+</extension>
