@@ -4,17 +4,76 @@ defined('_JEXEC') or die('Restricted access');
 
 class CarsModelCar extends JModelItem
 {
+    private function validate($data)
+    {
+        return isset($data['brand']) && is_string($data['brand'])
+            && isset($data['model']) && is_string($data['model'])
+            && isset($data['description']) && is_string($data['description'])
+            && strlen($data['brand']) <= 50
+            && strlen($data['model']) <= 50
+            && strlen($data['description']) <= 300;
+    }
+
+    private function exists($id)
+    {
+        if (intval($id) <= 0) {
+            return false;
+        }
+
+        $table = $this->getTable();
+        $table->load($id);
+        return $table->get('id') == $id;
+    }
+
     public function getTable($type = 'Cars', $prefix = 'CarsTable', $config = array())
     {
         JTable::addIncludePath(JPATH_BASE . '/components/com_cars/tables');
         return JTable::getInstance($type, $prefix, $config);
     }
 
-    public function getAll()
+    public function getSingle($id)
     {
-        $query = $this->getQuery(true);
-        $query->from('#__cars');
+        $table = $this->getTable();
+        $table->load($id);
+        return $table->getProperties();
+    }
 
-        return $query;
+    public function create($data)
+    {
+        if (!$this->validate($data)) {
+            return false;
+        }
+
+        $table = $this->getTable();
+        $table->set('brand', $data['brand']);
+        $table->set('model', $data['model']);
+        $table->set('description', $data['description']);
+        $table->store();
+
+        return $table->getProperties();
+    }
+
+    public function update($id, $data)
+    {
+        if (!$this->validate($data) 
+         || !$this->exists($id)) {
+            return false;
+        }
+
+        $table = $this->getTable();
+        $table->set('id', $id);
+        $table->set('brand', $data['brand']);
+        $table->set('model', $data['model']);
+        $table->set('description', $data['description']);
+        $table->store();
+
+        return $table->getProperties();
+    }
+
+    public function delete($id)
+    {
+        $table = $this->getTable();
+        $table->delete($id);
+        return true;
     }
 }
