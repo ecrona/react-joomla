@@ -1,0 +1,48 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "react-redux/react-redux.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "history/history.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "redux/redux.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "superagent/superagent.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "object-assign/object-assign.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "react/react.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "redux-thunk/redux-thunk.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "react-router/react-router.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "react-router-redux/react-router-redux.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "react-router/history.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "node/node.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "react/react-dom.d.ts": {
+      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    }
+  }
+}

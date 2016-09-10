@@ -1,0 +1,7 @@
+{
+    "version": "0.1.0",
+    "command": "${workspaceRoot}/node_modules/.bin/webpack",
+    "isShellCommand": true,
+    "args": [],
+    "echoCommand": true
+}
