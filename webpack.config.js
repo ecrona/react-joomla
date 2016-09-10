@@ -2,9 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 
 var config = {
-    entry: ['./src/app.tsx'],
+    entry: ['./public/components/com_cars/assets/app.tsx'],
     output: {
-        path: path.resolve(__dirname, 'public/js'),
+        path: path.resolve(__dirname, './public/components/com_cars/assets/build'),
         filename: 'bundle.js'
     },
     devtool: "source-map",

@@ -1,1 +1,1 @@
-Hej
+<div class="app"></div>
