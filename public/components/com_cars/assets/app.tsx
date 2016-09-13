@@ -2,7 +2,10 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { Shell } from './components/shell'
-import { List } from './components/list'
+import List from './components/list'
+
+import { fetching as fetchingReducer } from './components/reducers/fetching'
+import { cars as carsReducer } from './components/reducers/cars'
 
 import { Router, Route, useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
@@ -12,12 +15,17 @@ import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-rou
 import thunkMiddleware from 'redux-thunk'
 
 const rootReducer = combineReducers({
-    //viewState: viewStateReducer,
+    list: combineReducers({
+        fetching: fetchingReducer,
+        cars: carsReducer
+    }),
     routing: routerReducer
 });
 
 const initialState = {
-    //viewState: 1,
+    list: {
+        cars: []
+    }
 };
 
 const history = useRouterHistory(createHashHistory)({ queryKey: false });
