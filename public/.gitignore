@@ -1,0 +1,15 @@
+*
+!.gitignore
+
+!administrator
+administrator/*
+!administrator/components
+administrator/components/*
+!administrator/components/com_cars
+!administrator/components/com_cars/**/*
+
+
+!components
+components/*
+!components/com_cars
+!components/com_cars/**/*
