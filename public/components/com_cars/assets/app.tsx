@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { Shell } from './components/shell'
-import List from 'components/list/list'
+import { List } from './components/list'
 
 import { Router, Route, useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
@@ -27,7 +27,10 @@ const store = createStore(rootReducer, initialState, applyMiddleware(thunkMiddle
 const routes = {
     path: '/',
     component: Shell,
-    childRoutes: []
+    childRoutes: [{
+        component: List,
+        path: '/list'
+    }]
 };
 
 setTimeout(() => {
