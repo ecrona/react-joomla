@@ -9,7 +9,7 @@ var config = {
     },
     devtool: "source-map",
     resolve: {
-        root: path.resolve('./src'),
+        root: path.resolve('./public/components/com_cars/assets'),
         extensions: ['', '.ts', '.tsx', '.js']
     },
     module: {

@@ -1,5 +1,5 @@
-import { Http } from '../../utilities/http'
-import { Resolver } from '../../utilities/resolver'
+import { Http } from 'utilities/http'
+import { Resolver } from 'utilities/resolver'
 
 import { Car } from 'models/car.d'
 
@@ -22,9 +22,9 @@ export function receiveCars(cars: Array<Car>) {
 export function fetchCars(resolver: Resolver) {
     return (dispatch) => {
         dispatch(requestCars());
-        return Http.get('/component/cars?task=cars.getAll', resolver)
-            .then((cars) => {
-                dispatch(receiveCars(cars.body));
+        return Http.get('/index.php/component/cars?task=cars.getAll', resolver)
+            .then((response) => {
+                dispatch(receiveCars(response.body));
             });
     };
 }

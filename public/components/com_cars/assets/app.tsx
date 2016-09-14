@@ -2,10 +2,13 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { Shell } from './components/shell'
-import List from './components/list'
+import List from './components/list/list'
+import Create from './components/form/create'
 
-import { fetching as fetchingReducer } from './components/reducers/fetching'
-import { cars as carsReducer } from './components/reducers/cars'
+import { fetching as fetchingReducer } from './components/list/reducers/fetching'
+import { cars as carsReducer } from './components/list/reducers/cars'
+
+import { model as modelReducer } from './components/form/reducers/model'
 
 import { Router, Route, useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
@@ -19,12 +22,19 @@ const rootReducer = combineReducers({
         fetching: fetchingReducer,
         cars: carsReducer
     }),
+    form: combineReducers({
+        model: modelReducer
+    }),
     routing: routerReducer
 });
 
 const initialState = {
     list: {
+        fetching: false,
         cars: []
+    },
+    form: {
+        model: {}
     }
 };
 
@@ -38,6 +48,9 @@ const routes = {
     childRoutes: [{
         component: List,
         path: '/list'
+    }, {
+        component: Create,
+        path: '/create'
     }]
 };
 

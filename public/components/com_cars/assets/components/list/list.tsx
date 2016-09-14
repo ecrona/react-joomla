@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { fetchCars } from './actions/fetch-cars'
-import { Resolver } from '../utilities/resolver'
+import { Resolver } from 'utilities/resolver'
 
 import { Car } from 'models/car.d'
 
