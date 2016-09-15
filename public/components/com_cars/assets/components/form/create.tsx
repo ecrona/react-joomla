@@ -1,9 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import objectAssign = require('object-assign')
 
 import { Resolver } from 'utilities/resolver'
 import { setModel } from './actions/set-model'
+import { createCar } from './actions/create-car'
+
+import { Form } from './form'
 
 import { Car } from 'models/car.d'
 
@@ -15,7 +19,6 @@ interface Props {
 class Create extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
-        console.log(props)
     }
 
     public componentDidMount() {
@@ -26,26 +29,34 @@ class Create extends React.Component<Props, any> {
             color: ''
         }));
     }
+
+    public setBrand(brand: string) {
+        this.props.dispatch(setModel(objectAssign({}, this.props.model, { brand })));
+    }
+    
+    public setModel(model: string) {
+        this.props.dispatch(setModel(objectAssign({}, this.props.model, { model })));
+    }
+
+    public setColor(color: string) {
+        this.props.dispatch(setModel(objectAssign({}, this.props.model, { color })));
+    }
     
     public render() {
-        const { model } = this.props;
-        console.log(model)
+        const { dispatch, model } = this.props;
 
         return (
             <form>
-                <div>
-                    <label>Brand</label>
-                    <input type="text" value={ model.brand } placeholder="e.g. Toyota" />
-                </div>
-                <div>
-                    <label>Model</label>
-                    <input type="text" value={ model.model } placeholder="e.g. Prius" />
-                </div>
-                <div>
-                    <label>Color</label>
-                    <input type="text" value={ model.color } placeholder="e.g. Green" />
-                </div>
-                <input type="button" value="Create" />
+                <Form
+                    car={ model }
+                    setBrand={ this.setBrand.bind(this) }
+                    setModel={ this.setModel.bind(this) }
+                    setColor={ this.setColor.bind(this) } />
+
+                <input
+                    type="button"
+                    value="Create"
+                    onClick={ () => dispatch(createCar(model, new Resolver)) } />
             </form>
         );
     }

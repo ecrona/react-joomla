@@ -7,6 +7,7 @@ export class Shell extends React.Component<any, any> {
     }
     
     public render() {
+        console.log('re-render app shell')
         return (
             <div>
                 <h1>App</h1>

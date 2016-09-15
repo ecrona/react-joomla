@@ -7,7 +7,7 @@ import Create from './components/form/create'
 
 import { fetching as fetchingReducer } from './components/list/reducers/fetching'
 import { cars as carsReducer } from './components/list/reducers/cars'
-
+import { saving as savingReducer } from './components/form/reducers/saving'
 import { model as modelReducer } from './components/form/reducers/model'
 
 import { Router, Route, useRouterHistory } from 'react-router'
@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
         cars: carsReducer
     }),
     form: combineReducers({
+        saving: savingReducer,
         model: modelReducer
     }),
     routing: routerReducer
@@ -34,6 +35,7 @@ const initialState = {
         cars: []
     },
     form: {
+        saving: false,
         model: {}
     }
 };
