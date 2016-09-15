@@ -8,6 +8,7 @@ import { setModel } from './actions/set-model'
 import { createCar } from './actions/create-car'
 
 import { Form } from './form'
+import { Loader } from 'components/loader'
 
 import { Car } from 'models/car.d'
 
@@ -44,20 +45,26 @@ class Create extends React.Component<Props, any> {
     }
     
     public render() {
-        const { dispatch, model } = this.props;
+        const { dispatch, saving, model } = this.props;
 
         return (
             <form>
-                <Form
-                    car={ model }
-                    setBrand={ this.setBrand.bind(this) }
-                    setModel={ this.setModel.bind(this) }
-                    setColor={ this.setColor.bind(this) } />
-
-                <input
-                    type="button"
-                    value="Create"
-                    onClick={ () => dispatch(createCar(model, new Resolver)) } />
+                { saving ?
+                    <Loader />
+                :
+                    <div>
+                        <Form
+                            car={ model }
+                            setBrand={ this.setBrand.bind(this) }
+                            setModel={ this.setModel.bind(this) }
+                            setColor={ this.setColor.bind(this) } />
+                        <input
+                            type="submit"
+                            value="Create"
+                            onClick={ () => dispatch(createCar(model, new Resolver)) }
+                            className="btn btn-primary" />
+                    </div>
+                }
             </form>
         );
     }

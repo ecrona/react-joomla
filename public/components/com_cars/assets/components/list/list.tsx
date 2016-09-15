@@ -1,15 +1,19 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { push } from 'react-router-redux'
 
 import { fetchCars } from './actions/fetch-cars'
 import { removeCar } from './actions/remove-car'
 import { Resolver } from 'utilities/resolver'
 
 import { Car } from 'models/car.d'
+import { Table } from './table'
+import { Loader } from 'components/loader'
 
 interface Props {
     dispatch: any;
+    fetching: boolean;
     cars: Array<Car>;
 }
 
@@ -22,38 +26,35 @@ class List extends React.Component<Props, any> {
     public componentDidMount() {
         this.props.dispatch(fetchCars(new Resolver()));
     }
+
+    public modifyCar(car: Car) {
+        this.props.dispatch(push('update/' + car.id));
+    }
+
+    public removeCar(car: Car) {
+        this.props.dispatch(removeCar(car.id, new Resolver));
+    }
     
     public render() {
-        const { dispatch, cars } = this.props;
-        console.log(cars)
+        const { dispatch, fetching, cars } = this.props;
 
         return (
             <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Brand</th>
-                            <th>Model</th>
-                            <th>Color</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        cars.map((car, index) => (
-                            <tr key={ index }>
-                                <td>{ car.brand }</td>
-                                <td>{ car.model }</td>
-                                <td>{ car.color }</td>
-                                <td>
-                                    <a onClick={ () => dispatch(removeCar(car.id, new Resolver)) }>
-                                        Remove
-                                    </a>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    </tbody>
-                </table>
+                <div
+                    onClick={ () => dispatch(push('create')) }
+                    className="btn btn-success"
+                    style={{ float: 'right' }}>
+                    Create
+                </div>
+
+                { fetching ?
+                    <Loader />
+                :
+                    <Table
+                        cars={ cars }
+                        modify={ this.modifyCar.bind(this) }
+                        remove={ this.removeCar.bind(this) } />
+                }
             </div>
         );
     }
@@ -61,7 +62,8 @@ class List extends React.Component<Props, any> {
 
 
 const mapStateToProps = state => ({
-    cars: state.list.cars
+    cars: state.list.cars,
+    fetching: state.list.fetching
 });
 
 export default connect(mapStateToProps)(List);

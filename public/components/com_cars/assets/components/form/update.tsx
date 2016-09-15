@@ -9,6 +9,7 @@ import { fetchCar } from './actions/fetch-car'
 import { updateCar } from './actions/update-car'
 
 import { Form } from './form'
+import { Loader } from 'components/loader'
 
 import { Car } from 'models/car.d'
 
@@ -16,6 +17,7 @@ interface Props {
     dispatch: any;
     routing: any;
     model: Car;
+    fetching: boolean;
     saving: boolean;
     params: { id: number };
 }
@@ -42,20 +44,26 @@ class Update extends React.Component<Props, any> {
     }
     
     public render() {
-        const { dispatch, model, params} = this.props;
+        const { dispatch, fetching, saving, model, params } = this.props;
 
         return (
             <form>
-                <Form
-                    car={ model }
-                    setBrand={ this.setBrand.bind(this) }
-                    setModel={ this.setModel.bind(this) }
-                    setColor={ this.setColor.bind(this) } />
-
-                <input
-                    type="button"
-                    value="Create"
-                    onClick={ () => dispatch(updateCar(params.id, model, new Resolver)) } />
+                { fetching || saving ?
+                    <Loader />
+                :
+                    <div>
+                        <Form
+                            car={ model }
+                            setBrand={ this.setBrand.bind(this) }
+                            setModel={ this.setModel.bind(this) }
+                            setColor={ this.setColor.bind(this) } />
+                        <input
+                            type="submit"
+                            value="Update"
+                            onClick={ () => dispatch(updateCar(params.id, model, new Resolver)) }
+                            className="btn btn-primary"  />
+                    </div>
+                }
             </form>
         );
     }
@@ -63,6 +71,7 @@ class Update extends React.Component<Props, any> {
 
 const mapStateToProps = state => ({
     model: state.form.model,
+    fetching: state.form.fetching,
     saving: state.form.saving
 });
 

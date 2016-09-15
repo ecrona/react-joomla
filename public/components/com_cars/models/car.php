@@ -8,10 +8,10 @@ class CarsModelCar extends JModelItem
     {
         return isset($data['brand']) && is_string($data['brand'])
             && isset($data['model']) && is_string($data['model'])
-            && isset($data['description']) && is_string($data['description'])
+            && isset($data['color']) && is_string($data['color'])
             && strlen($data['brand']) <= 50
             && strlen($data['model']) <= 50
-            && strlen($data['description']) <= 300;
+            && strlen($data['color']) <= 50;
     }
 
     private function exists($id)
@@ -47,7 +47,7 @@ class CarsModelCar extends JModelItem
         $table = $this->getTable();
         $table->set('brand', $data['brand']);
         $table->set('model', $data['model']);
-        $table->set('description', $data['description']);
+        $table->set('color', $data['color']);
         $table->store();
 
         return $table->getProperties();
@@ -64,7 +64,7 @@ class CarsModelCar extends JModelItem
         $table->set('id', $id);
         $table->set('brand', $data['brand']);
         $table->set('model', $data['model']);
-        $table->set('description', $data['description']);
+        $table->set('color', $data['color']);
         $table->store();
 
         return $table->getProperties();

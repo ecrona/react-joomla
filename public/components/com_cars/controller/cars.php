@@ -26,7 +26,7 @@ class CarsControllerCars extends CarsControllerJson
 		$this->json($model->create([
 			'brand' => $json->get('brand'),
 			'model' => $json->get('model'),
-			'description' => $json->get('description')
+			'color' => $json->get('color')
 		]));
 	}
 
@@ -39,7 +39,7 @@ class CarsControllerCars extends CarsControllerJson
 		$this->json($model->update($input->get('id'), [
 			'brand' => $json->get('brand'),
 			'model' => $json->get('model'),
-			'description' => $json->get('description')
+			'color' => $json->get('color')
 		]));
 	}
 

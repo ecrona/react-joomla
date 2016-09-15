@@ -14,7 +14,7 @@ export function requestCar() {
 export function fetchCar(id: number, resolver: Resolver) {
     return (dispatch) => {
         dispatch(requestCar());
-        return Http.get('/index.php/component/cars?task=cars.get&id=' + id, resolver)
+        return Http.get('/index.php/component/cars?task=cars.getSingle&id=' + id, resolver)
             .then((response) => {
                 dispatch(setModel(response.body));
             });
