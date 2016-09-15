@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { fetchCars } from './actions/fetch-cars'
+import { removeCar } from './actions/remove-car'
 import { Resolver } from 'utilities/resolver'
 
 import { Car } from 'models/car.d'
@@ -23,7 +24,7 @@ class List extends React.Component<Props, any> {
     }
     
     public render() {
-        const { cars } = this.props;
+        const { dispatch, cars } = this.props;
         console.log(cars)
 
         return (
@@ -43,6 +44,11 @@ class List extends React.Component<Props, any> {
                                 <td>{ car.brand }</td>
                                 <td>{ car.model }</td>
                                 <td>{ car.color }</td>
+                                <td>
+                                    <a onClick={ () => dispatch(removeCar(car.id, new Resolver)) }>
+                                        Remove
+                                    </a>
+                                </td>
                             </tr>
                         ))
                     }
