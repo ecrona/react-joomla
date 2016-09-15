@@ -5,7 +5,8 @@ import objectAssign = require('object-assign')
 
 import { Resolver } from 'utilities/resolver'
 import { setModel } from './actions/set-model'
-import { createCar } from './actions/create-car'
+import { fetchCar } from './actions/fetch-car'
+import { updateCar } from './actions/update-car'
 
 import { Form } from './form'
 
@@ -13,22 +14,19 @@ import { Car } from 'models/car.d'
 
 interface Props {
     dispatch: any;
+    routing: any;
     model: Car;
     saving: boolean;
+    params: { id: number };
 }
 
-class Create extends React.Component<Props, any> {
+class Update extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
     }
 
     public componentDidMount() {
-        this.props.dispatch(setModel({
-            id: 0,
-            brand: '',
-            model: '',
-            color: ''
-        }));
+        this.props.dispatch(fetchCar(this.props.params.id, new Resolver));
     }
 
     public setBrand(brand: string) {
@@ -44,7 +42,7 @@ class Create extends React.Component<Props, any> {
     }
     
     public render() {
-        const { dispatch, model } = this.props;
+        const { dispatch, model, params} = this.props;
 
         return (
             <form>
@@ -57,7 +55,7 @@ class Create extends React.Component<Props, any> {
                 <input
                     type="button"
                     value="Create"
-                    onClick={ () => dispatch(createCar(model, new Resolver)) } />
+                    onClick={ () => dispatch(updateCar(params.id, model, new Resolver)) } />
             </form>
         );
     }
@@ -68,4 +66,4 @@ const mapStateToProps = state => ({
     saving: state.form.saving
 });
 
-export default connect(mapStateToProps)(Create);
+export default connect(mapStateToProps)(Update);
