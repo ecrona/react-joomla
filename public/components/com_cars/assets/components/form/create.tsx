@@ -47,6 +47,8 @@ class Create extends React.Component<Props, any> {
     public render() {
         const { dispatch, saving, model } = this.props;
 
+        console.log(this.props)
+
         return (
             <form>
                 { saving ?

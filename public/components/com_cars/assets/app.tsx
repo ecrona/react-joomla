@@ -12,7 +12,7 @@ import { saving as savingReducer } from './components/form/reducers/saving'
 import { model as modelReducer } from './components/form/reducers/model'
 import { fetching as fetchingCarReducer } from './components/form/reducers/fetching'
 
-import { Router, Route, useRouterHistory } from 'react-router'
+import { Router, Route, useRouterHistory, IndexRoute } from 'react-router'
 import { createHashHistory } from 'history'
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -40,7 +40,12 @@ const initialState = {
     form: {
         fetching: false,
         saving: false,
-        model: {}
+        model: {
+            id: 0,
+            brand: '',
+            model: '',
+            color: ''
+        }
     }
 };
 
@@ -51,6 +56,7 @@ const store = createStore(rootReducer, initialState, applyMiddleware(thunkMiddle
 const routes = {
     path: '/',
     component: Shell,
+    indexRoute: { component: List },
     childRoutes: [{
         component: List,
         path: '/list'
