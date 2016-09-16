@@ -20,7 +20,6 @@ interface Props {
 class List extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
-        console.log(props)
     }
 
     public componentDidMount() {
